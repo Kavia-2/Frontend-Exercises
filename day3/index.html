@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Task Tracker</h1>
+
+        <!-- Task Assignment Form -->
+        <form id="taskForm">
+            <label for="employeeName">Employee Name:</label>
+            <input type="text" id="employeeName" name="employeeName" required>
+
+            <label for="taskTitle">Task Title:</label>
+            <input type="text" id="taskTitle" name="taskTitle" required>
+
+            <label for="taskDescription">Task Description:</label>
+            <textarea id="taskDescription" name="taskDescription" rows="3" required></textarea>
+
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" name="dueDate" required>
+
+            <button type="submit">Assign Task</button>
+        </form>
+
+        <!-- Task Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th colspan="2">Task Details</th>
+                    <th>Due Date</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Task Title</th>
+                    <th>Task Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td rowspan="2">John Doe</td>
+                    <td>Design Homepage</td>
+                    <td>Create wireframes and initial design for the homepage.</td>
+                    <td>2024-01-15</td>
+                </tr>
+                <tr>
+                    <td>Team Meeting</td>
+                    <td>Prepare slides for team progress review.</td>
+                    <td>2024-01-20</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
