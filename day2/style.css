@@ -1,0 +1,166 @@
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    text-align: center;
+    color: #444;
+    margin-top: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0;
+}
+
+header .menu li {
+    margin: 0 15px;
+}
+
+header .menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+header .menu a:hover {
+    color: #f4a261;
+}
+
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#about {
+    text-align: center;
+}
+
+#skills ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#skills li {
+    display: inline-block;
+    background: #f4a261;
+    color: #fff;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+
+#projects .project {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#projects .project h3 {
+    margin-top: 0;
+}
+
+#projects .project a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+#projects .project a:hover {
+    text-decoration: underline;
+}
+
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #444;
+}
+
+
+.social-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.social-links a:hover {
+    color: #f4a261;
+}
