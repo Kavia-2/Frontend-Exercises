@@ -1,90 +1,106 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Georgia", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #4a4a4a;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ffd700;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+header .tagline {
+    font-size: 1.2rem;
+    color: #836666;
+}
+
+/* Navigation */
+nav {
+    background-color: #836666;
+    padding: 10px 0;
+    text-align: center;
+}
+nav ul {
+    list-style: none;
     margin: 0;
     padding: 0;
 }
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 50px 0;
-    text-align: center;
+nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
-
-nav {
-    background-color: #867c7c;
-    overflow: hidden;
-}
-
-nav a {
-    color: white;
-    padding: 30px 40px;
+nav ul li a {
     text-decoration: none;
-    float: left;
+    color: white;
+    font-size: 18px;
+}
+nav ul li a:hover {
+    color: #ffd700;
 }
 
-nav a:hover {
-    background-color: #ddd;
-}
-
+/* Layout */
 .container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     padding: 20px;
 }
-
 .main-content {
-    width: 70%;
+    flex: 3;
+    padding: 20px;
 }
-
 .sidebar {
-    width: 25%;
-    background-color: #f4f4f4;
-    padding: 10px;
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-left: 2px solid #ddd;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+/* Headlines and Articles */
+.headline h2, .article h3 {
+    color: #333;
 }
-
-.article {
-    margin-bottom: 20px;
-}
-
-.article h2 {
-    font-size: 24px;
-}
-
-.article img {
-    width: 70%;
+.main-content img {
+    max-width: 100%;
     height: auto;
+    margin: 20px 0;
+}
+.article p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
+/* Sidebar */
 .sidebar h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    margin-top: 0;
 }
-
 .sidebar ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: square;
+    padding-left: 20px;
 }
-
 .sidebar ul li {
     margin: 10px 0;
 }
-
 .sidebar ul li a {
     text-decoration: none;
-    color: #333;
+    color: #836666;
+}
+.sidebar ul li a:hover {
+    text-decoration: underline;
 }
 
-.sidebar ul li a:hover {
-    color: #4CAF50;
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #836666;
+    color: white;
+    font-size: 0.9rem;
 }
