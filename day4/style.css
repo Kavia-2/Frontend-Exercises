@@ -1,0 +1,179 @@
+/* General Styling */
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #faf3e0; /* Light beige background */
+    color: #333;
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: #836666;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h2, h3 {
+    color: #5c5c5c;
+}
+
+/* Tagline */
+.tagline {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #836666;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 2px solid #836666;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #f4e8de; /* Soft beige button */
+    transition: background-color 0.3s ease;
+}
+
+nav ul a:hover {
+    background-color: #836666; /* Muted brown hover */
+    color: white;
+}
+
+/* Main Content */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.main-content {
+    width: 70%;
+    padding-right: 20px;
+}
+
+.article {
+    background-color: #ffffff; /* White article background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.article img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 20px;
+    background-color: #f4e8de; /* Soft beige sidebar */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #836666;
+    font-size: 1.1em;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Event Section */
+main {
+    padding: 30px 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-container {
+    text-align: center;
+}
+
+.event {
+    background-color: #ffffff; /* White event background */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.event p {
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.event-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #836666; /* Muted brown footer */
+    color: white;
+    font-size: 1em;
+    margin-top: 40px;
+}
+
+/* Divider Lines */
+hr {
+    border: 1px solid #836666; /* Divider color matching theme */
+    margin: 20px 0;
+}
