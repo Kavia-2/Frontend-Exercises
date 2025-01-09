@@ -17,17 +17,17 @@ function displayLargestWord() {
 
 
 function replaceNamesWithChanged() {
-    let input = document.getElementById('inputText').value;
+    let input = document.getElementById('input').value;
     let words = input.split(' ');
-    let seen = {};
+    let rep = {};
     let result = [];
 
     for (let word of words) {
-        if (seen[word]) {
+        if (rep[word]) {
             result.push('CHANGED');
         } else {
             result.push(word);
-            seen[word] = true;
+            rep[word] = true;
         }
     }
     document.getElementById('modifiedSentence').textContent =  result.join(' ');
@@ -45,18 +45,14 @@ function replaceEvenIndexedWords() {
     document.getElementById('resultOutput').textContent =  words.join(' ');
 }
 
-function removeDuplicateCharacters() {
-    let sentenceInput = document.getElementById('sentenceInput').value;
-    let result = '';
-    let seen = '';
+function removeDuplicates() {
+    const inputText = document.getElementById("text").value;
+    let output_res = "";
 
-    for (let i = 0; i < sentenceInput.length; i++) {
-        let char = sentenceInput[i];
-        if (seen.indexOf(char) === -1) {  
-            seen += char;
-            result += char;
+    for (let i = 0; i < inputText.length; i++) {
+        if (output_res.indexOf(inputText[i]) === -1) {
+            output_res += inputText[i];
         }
     }
-
-    document.getElementById('outputResult').innerHTML =  result;
+    document.getElementById("Result").innerText = output_res;
 }
