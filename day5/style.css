@@ -87,7 +87,7 @@ header .list{
 .list:active{
     color: #f2cc8f !important;
 }
-.btn login{
+header btn login{
     color: #edc88d;
     background-color: transparent;
     border: 2px solid #edc88d;
