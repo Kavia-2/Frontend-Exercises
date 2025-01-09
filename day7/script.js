@@ -57,8 +57,9 @@ function findLargestNumber(arr) {
             largest = arr[i];
         }
     }
-    console.log(largest);
+    document.getElementById("arrayInput").innerText = largest;
 }
+
 
 function countVowels() {
     const str = document.getElementById("inputString").value;
