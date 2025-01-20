@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members Table</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Members Data</h1>
+    <table id="teamMembers">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script >
+        const teamMembers = [
+    { empId: 101, fullName: "Alice", years: 29, team: "HR" },
+    { empId: 102, fullName: "Bob", years: 35, team: "Finance" },
+    { empId: 103, fullName: "Charlie", years: 26, team: "IT" },
+    { empId: 104, fullName: "Diana", years: 31, team: "Marketing" },
+    { empId: 105, fullName: "Edward", years: 41, team: "Operations" },
+    { empId: 106, fullName: "Fiona", years: 30, team: "HR" },
+    { empId: 107, fullName: "George", years: 33, team: "Finance" },
+    { empId: 108, fullName: "Hannah", years: 28, team: "IT" },
+    { empId: 109, fullName: "Ian", years: 36, team: "Sales" },
+    { empId: 110, fullName: "Jack", years: 27, team: "Logistics" },
+];
+
+const tableBody = document.querySelector("#teamMembers tbody");
+teamMembers.forEach(member => {
+    const row = document.createElement("tr");
+    Object.values(member).forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
+    tableBody.appendChild(row);
+});
+
+    </script>
+</body>
+</html>

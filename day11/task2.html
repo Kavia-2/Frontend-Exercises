@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Table</title>
+    <style>
+        table {
+            width: 500px;
+            border-radius: 10px;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #c6c4c4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Table</h1>
+    <table id="tasksData">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const taskData = [
+            {
+                userId: 1,
+                userName: "John",
+                userTasks: [
+                    { taskId: 101, taskDescription: "Complete report", taskStatus: "Pending" },
+                    { taskId: 102, taskDescription: "Review code", taskStatus: "Completed" },
+                ],
+            },
+            {
+                userId: 2,
+                userName: "Jane",
+                userTasks: [
+                    { taskId: 103, taskDescription: "Prepare slides", taskStatus: "In Progress" },
+                    { taskId: 104, taskDescription: "Team meeting", taskStatus: "Pending" },
+                ],
+            },
+        ];
+        const tbodyElement = document.querySelector("#tasksData tbody");
+
+        taskData.forEach(user => {
+            user.userTasks.forEach(task => {
+                const tableRow = document.createElement("tr");
+
+                const nameCell = document.createElement("td");
+                nameCell.textContent = user.userName;
+                tableRow.appendChild(nameCell);
+
+                const descriptionCell = document.createElement("td");
+                descriptionCell.textContent = task.taskDescription;
+                tableRow.appendChild(descriptionCell);
+
+                const statusCell = document.createElement("td");
+                statusCell.textContent = task.taskStatus;
+                tableRow.appendChild(statusCell);
+
+                tbodyElement.appendChild(tableRow);
+            });
+        });
+    </script>
+</body>
+</html>
