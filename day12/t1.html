@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 50%;
+      max-width: 500px;
+      padding: 20px;
+      background: rgb(237, 177, 177);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 50px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    #login-form{
+        margin-left: 25%;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #2c0745;
+      color: white;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-left: 9%;
+    }
+    button:hover {
+      background-color: #6babf0;
+    }
+    .hidden {
+      display: none;
+    }
+    .question {
+      margin-bottom: 90px;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+  <div id="login-page">
+    <h1>JavaScript Quiz</h1>
+    <form id="login-form">
+      <label for="username">Name:</label><br>
+      <input type="text" id="username" required><br><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" required><br><br>
+      <button type="submit">Start Quiz</button>
+    </form>
+  </div>
+
+  <div id="quiz-page" class="hidden">
+    <h2>Quiz</h2>
+    <div id="questions-container"></div>
+    <button id="submit-quiz">Submit</button>
+  </div>
+
+  <div id="result-page" class="hidden">
+    <h2>Result</h2>
+    <div id="results-container"></div>
+    <button id="view-ranking">View Ranking</button>
+  </div>
+
+  <div id="dashboard-page" class="hidden">
+    <h2>Dashboard</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Score</th>
+          <th>Rank</th>
+        </tr>
+      </thead>
+      <tbody id="ranking-table"></tbody>
+    </table>
+  </div>
+</div>
+<script>
+const questions = [
+  {
+    question: "Which method is used to remove the last element from an array?",
+    options: [
+      { answer: "pop()", isCorrect: true },
+      { answer: "shift()", isCorrect: false },
+      { answer: "push()", isCorrect: false },
+      { answer: "unshift()", isCorrect: false }
+    ]
+  },
+  {
+    question: "Which method is used to join all elements of an array into a string?",
+    options: [
+      { answer: "join()", isCorrect: true },
+      { answer: "concat()", isCorrect: false },
+      { answer: "slice()", isCorrect: false },
+      { answer: "splice()", isCorrect: false }
+    ]
+  },
+  {
+    question: "Which method creates a new array with all elements that pass a test?",
+    options: [
+      { answer: "filter()", isCorrect: true },
+      { answer: "map()", isCorrect: false },
+      { answer: "reduce()", isCorrect: false },
+      { answer: "forEach()", isCorrect: false }
+    ]
+  },
+  {
+    question: "Which of the following is not a valid JavaScript data type?",
+    options: [
+      { answer: "Number", isCorrect: false },
+      { answer: "String", isCorrect: false },
+      { answer: "Float", isCorrect: true },
+      { answer: "Boolean", isCorrect: false }
+    ]
+  },
+  {
+    question: "What will the following code output: `console.log(3 + '3')`?",
+    options: [
+      { answer: "33", isCorrect: true },
+      { answer: "6", isCorrect: false },
+      { answer: "NaN", isCorrect: false },
+      { answer: "Error", isCorrect: false }
+    ]
+  }
+];
+
+const appState = {
+  user: {},
+  answers: [],
+  score: 0,
+  rankings: []
+};
+
+const loginForm = document.getElementById('login-form')
+
+const quizPage = document.getElementById('quiz-page');
+const questionsContainer = document.getElementById('questions-container');
+const resultPage = document.getElementById('result-page');
+const resultsContainer = document.getElementById('results-container');
+const dashboardPage = document.getElementById('dashboard-page');
+const rankingTable = document.getElementById('ranking-table');
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (username && email) {
+    appState.user = { username, email };
+    document.getElementById('login-page').classList.add('hidden');
+    quizPage.classList.remove('hidden');
+    renderQuestions();
+  }
+});
+
+function renderQuestions() {
+  questions.forEach((q, index) => {
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+    q.options.forEach((option, i) => {
+      const optionHTML = `<input type="radio" name="q${index}" value="${i}"> ${option.answer}<br>`;
+      div.innerHTML += optionHTML;
+    });
+    questionsContainer.appendChild(div);
+  });
+}
+
+document.getElementById('submit-quiz').addEventListener('click', () => {
+  const userAnswers = [];
+  questions.forEach((q, index) => {
+    const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+    userAnswers.push(selectedOption ? parseInt(selectedOption.value) : null);
+  });
+  calculateScore(userAnswers);
+  quizPage.classList.add('hidden');
+  resultPage.classList.remove('hidden');
+  renderResults(userAnswers);
+});
+
+function calculateScore(userAnswers) {
+  appState.score = 0;
+  userAnswers.forEach((answer, index) => {
+    if (answer !== null && questions[index].options[answer].isCorrect) {
+      appState.score++;
+    }
+  });
+}
+
+function renderResults(userAnswers) {
+  resultsContainer.innerHTML = '';
+  questions.forEach((q, index) => {
+    const userAnswer = userAnswers[index] !== null ? q.options[userAnswers[index]].answer : "Not Answered";
+    const correctAnswer = q.options.find(option => option.isCorrect).answer;
+    const resultHTML = `<p>${index + 1}. ${q.question}<br> Your Answer: ${userAnswer}<br> Correct Answer: ${correctAnswer}</p>`;
+    resultsContainer.innerHTML += resultHTML;
+  });
+}
+
+document.getElementById('view-ranking').addEventListener('click', () => {
+  resultPage.classList.add('hidden');
+  dashboardPage.classList.remove('hidden');
+  updateRankings();
+});
+
+function updateRankings() {
+  const existingUserIndex = appState.rankings.findIndex(r => r.email === appState.user.email);
+  if (existingUserIndex >= 0) {
+    if (appState.score > appState.rankings[existingUserIndex].score) {
+      appState.rankings[existingUserIndex].score = appState.score;
+    }
+  } else {
+    appState.rankings.push({
+      name: appState.user.username,
+      email: appState.user.email,
+      score: appState.score
+    });
+  }
+  appState.rankings.sort((a, b) => b.score - a.score);
+  renderRankings();
+}
+
+function renderRankings() {
+  rankingTable.innerHTML = '';
+  appState.rankings.forEach((user, index) => {
+    const row = `<tr><td>${user.name}</td><td>${user.email}</td><td>${user.score}</td><td>${index + 1}</td></tr>`;
+    rankingTable.innerHTML += row;
+  });
+}
+</script>
+</body>
+</html>

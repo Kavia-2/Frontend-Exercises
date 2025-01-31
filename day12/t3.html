@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #a31c1c;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #2b1a28;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #7d9ec2;
+        }
+        .event {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 10px;
+            padding: 10px;
+            border: 5px solid #711b1b;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Manager</h1>
+
+        <form id="event-form">
+            <input type="text" id="event-title" placeholder="Event Title" required>
+            <input type="date" id="event-date" required><br><br>
+            <button class="button" type="submit">Add Event</button>
+        </form>
+
+        <div>
+            <button class="button" onclick="filterEvents('all')">All Events</button>
+            <button class="button" onclick="filterEvents('upcoming')">Upcoming Events</button>
+            <button class="button" onclick="filterEvents('past')">Past Events</button>
+        </div>
+
+        <div id="event-list"></div>
+    </div>
+
+    <script>
+        const events = JSON.parse(localStorage.getItem('events')) || [];
+
+        function renderEvents(filter = 'all') {
+            const eventList = document.getElementById('event-list');
+            eventList.innerHTML = '';
+
+            const now = new Date();
+            const filteredEvents = events.filter(event => {
+                const eventDate = new Date(event.date);
+                if (filter === 'upcoming') return eventDate >= now;
+                if (filter === 'past') return eventDate < now;
+                return true;
+            });
+
+            filteredEvents.forEach((event, index) => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'event';
+                eventDiv.innerHTML = `
+                    <h3>${event.title}</h3>
+                    <p>Date: ${event.date}</p>
+                    <p>Status: ${new Date(event.date) >= now ? 'Upcoming' : 'Past'}</p>
+                    <button class="button" onclick="editEvent(${index})">Edit</button>
+                    <button class="button" onclick="deleteEvent(${index})">Delete</button>
+                `;
+                eventList.appendChild(eventDiv);
+            });
+        }
+
+        function addEvent(e) {
+            e.preventDefault();
+            const title = document.getElementById('event-title').value;
+            const date = document.getElementById('event-date').value;
+
+            events.push({ title, date });
+            localStorage.setItem('events', JSON.stringify(events));
+            document.getElementById('event-form').reset();
+            renderEvents();
+        }
+
+        function editEvent(index) {
+            const newTitle = prompt('Edit Event Title:', events[index].title);
+            const newDate = prompt('Edit Event Date (YYYY-MM-DD):', events[index].date);
+
+            if (newTitle && newDate) {
+                events[index].title = newTitle;
+                events[index].date = newDate;
+                localStorage.setItem('events', JSON.stringify(events));
+                renderEvents();
+            }
+        }
+
+        function deleteEvent(index) {
+            events.splice(index, 1);
+            localStorage.setItem('events', JSON.stringify(events));
+            renderEvents();
+        }
+
+        function filterEvents(filter) {
+            renderEvents(filter);
+        }
+
+        document.getElementById('event-form').addEventListener('submit', addEvent);
+
+        renderEvents();
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Rental - Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #28a745;
+      border-radius: 5px;
+      background-color: #d4edda;
+      color: #155724;
+    }
+  </style>
+</head>
+<body>
+  <h1>Booking Page</h1>
+  <form id="bookingForm">
+    <p id="carDetails"></p>
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" required>
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" required>
+    <button type="submit">Confirm Booking</button>
+  </form>
+  <div class="confirmation" id="confirmationMessage" style="display: none;"></div>
+
+  <script>
+    const selectedCar = JSON.parse(localStorage.getItem("selectedCar"));
+    if (!selectedCar) {
+      alert("No car selected. Redirecting to home page...");
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("carDetails").textContent = 
+      `Booking for: ${selectedCar.model}, $${selectedCar.pricePerDay}/day`;
+
+    const form = document.getElementById("bookingForm");
+    const confirmationMessage = document.getElementById("confirmationMessage");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const startDate = new Date(document.getElementById("startDate").value);
+      const endDate = new Date(document.getElementById("endDate").value);
+
+      if (startDate < new Date()) {
+        alert("Start date cannot be in the past.");
+        return;
+      }
+      if (endDate <= startDate) {
+        alert("End date must be after the start date.");
+        return;
+      }
+
+      const rentalDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+      const totalCost = rentalDays * selectedCar.pricePerDay;
+
+      confirmationMessage.innerHTML = `
+        <strong>Booking Confirmed!</strong><br>
+        Car: ${selectedCar.model}<br>
+        Rental Duration: ${rentalDays} day(s)<br>
+        Total Cost: $${totalCost.toFixed(2)}
+      `;
+      confirmationMessage.style.display = "block";
+
+      const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      bookings.push({
+        car: selectedCar.model,
+        startDate: startDate.toISOString().split("T")[0],
+        endDate: endDate.toISOString().split("T")[0],
+        totalCost,
+      });
+      localStorage.setItem("bookings", JSON.stringify(bookings));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .inp-sec {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <div class="inp-sec">
+        <label for="category">Category:</label>
+        <select id="category">
+            <option value="select">Select</option>
+            <option value="water bill">Water bill</option>
+            <option value="electric bill">Electric bill</option>
+            <option value="gas bill">Gas bill</option>
+            <option value="bike service">Bike service</option>
+        </select>
+        <label for="amount-input">Amount:</label>
+        <input type="number" id="amount-input">
+        <label for="date-input">Date:</label>
+        <input type="date" id="date-input">
+        <button id="add-btn">Add</button>
+    </div>
+
+    <div class="expense-list">
+        <h2>Expense List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="expense-tab-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("add-btn").addEventListener("click", function() {
+            let category = document.getElementById("category").value;
+            let amount = document.getElementById("amount-input").value;
+            let date = document.getElementById("date-input").value;
+            
+            if (category === "select" || amount === "" || date === "") {
+                alert("Please fill out all fields correctly.");
+                return;
+            }
+            
+            let tableBody = document.getElementById("expense-tab-body");
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${category}</td>
+                <td>${amount}</td>
+                <td>${date}</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+            tableBody.appendChild(newRow);
+            
+            document.getElementById("category").value = "select";
+            document.getElementById("amount-input").value = "";
+            document.getElementById("date-input").value = "";
+        });
+        
+        function deleteRow(button) {
+            button.parentElement.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
