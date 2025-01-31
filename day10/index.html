@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Employees by Age</title>
+</head>
+<body>
+    <p id="output"></p>
+    <p id="result"></p>
+
+
+    <script>
+        const employees = [
+    { name: 'John', age: 28 },
+    { name: 'Anna', age: 22 },
+    { name: 'Mike', age: 32 }
+];
+
+employees.sort(a, b,c,d) 
+console.log(c);
+
+
+  //2 task
+        const obj1 = { a: 1, b: 2 };
+        const result = Object.entries(obj1);
+        console.log( result);
+
+    
+     const obj = { a: 1, b: 2, c: 3 }; 
+      const filteredObj = Object.fromEntries(
+       Object.entries(obj).filter(([key, value]) => value < 3));
+console.log(filteredObj);
+
+   //3 task
+const arr = [1, 2, 3, 5];
+const b = [4, 7];
+const c = 6;
+const mergedArray = [];
+for (let i of arr) {
+    if (!mergedArray.includes(i)) {
+        mergedArray.push(i);
+    }
+}
+
+for (let i of b) {
+    if (!mergedArray.includes(i)) {
+        mergedArray.push(i);
+    }
+}
+
+if (!mergedArray.includes(c)) {
+    mergedArray.push(c);
+}
+
+console.log(mergedArray);
+
+    </script>
+    
+</body>
+</html>
