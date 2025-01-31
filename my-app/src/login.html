@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Shopping</title>
+</head>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-image: url("2p.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+}
+
+.login-box {
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-image: url("1download.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: rgb(10, 8, 8);
+    font-size: 1.5rem;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-weight: 500;
+    display: block;
+    color: rgb(15, 12, 12);
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgb(8, 8, 8);
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #ff4757;
+    transform: scale(1.05);
+}
+
+.signup-link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+}
+
+.signup-link a {
+    color: #ffda79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
+</style>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login </h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email" style="font-weight: bold;">Email</label>
+           <input type="email" id="email" placeholder="Enter your email" required>
+
+
+                    <span class="error" id="email-error"></span>
+                </div>
+                <div class="input-group">
+                    <label for="password" style="font-weight: bold;">Password</label>
+           <input type="password" id="password" placeholder="Enter your password" required>
+
+                    <span class="error" id="password-error"></span>
+                </div>
+          
+                <button type="submit">Login</button>
+           
+            </form>
+        </div>
+    </div>
+    <script>document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        let isValid = true;
+    
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            document.getElementById("email-error").innerText = "Invalid email format";
+            isValid = false;
+        } else {
+            document.getElementById("email-error").innerText = "";
+        }
+    
+        if (password.length < 6) {
+            document.getElementById("password-error").innerText = "Password must be at least 6 characters";
+            isValid = false;
+        } else {
+            document.getElementById("password-error").innerText = "";
+        }
+    
+        if (isValid) {
+            window.location.href = "product.html";
+        }
+    });</script>
+</body>
+</html>

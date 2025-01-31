@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<style>
+body {
+    text-align: center;
+    background: linear-gradient(to right, #1d73ca, #e3e7eb);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 1.4rem;
+    color: #0b010b;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    padding: 10px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product-card {
+    background: rgb(233, 182, 182);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.product-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+
+}
+
+.product-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #682b2b;
+    margin: 15px 0 8px;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    color: #140aa1;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.view-btn {
+    background: #0f091f;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.3s ease;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(87, 64, 202, 0.3);
+}
+
+.view-btn:hover {
+    background: #432279;
+    box-shadow: 0px 6px 15px rgba(255, 87, 34, 0.4);
+    transform: scale(1.05);
+}
+
+</style>
+<body>
+    <h1>Explore Our Products</h1>
+    <div id="product-container" class="product-grid"></div>
+    <script>fetch("https://fakestoreapi.com/products")
+        .then(response => response.json())
+        .then(products => {
+            const productContainer = document.getElementById("product-container");
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+                productCard.innerHTML = `
+                    <img src="${product.image}" class="product-img">
+                    <h3 class="product-title">${product.title}</h3>
+                    <p class="product-price">$${product.price}</p>
+                    <a href="productdetails.html?id=${product.id}" class="view-btn">View Details</a>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        });
+    </script>
+</body>
+</html>

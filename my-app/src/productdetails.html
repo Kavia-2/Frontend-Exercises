@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="productdetails.css">
+</head>
+<style>
+body {
+    text-align: center;
+    background: #da7c7c;
+}
+
+#product-info {
+    background: rgb(208, 174, 174);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.back-btn {
+    background: #01010a; 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:hover {
+    background: #001d3c;
+    box-shadow: 0px 6px 15px rgba(127, 161, 198, 0.4);
+    transform: scale(1.05);
+}
+
+</style>
+<body>
+    <div id="product-info"></div>
+    <a href="product.html" class="back-btn">Back to Products</a>
+    <script>const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+        
+        if (productId) {
+            fetch(`https://fakestoreapi.com/products/${productId}`)
+                .then(response => response.json())
+                .then(product => {
+                    document.getElementById("product-info").innerHTML = `
+                        <h1>${product.title}</h1>
+                        <img src="${product.image}" width="200">
+                        <p>${product.description}</p>
+                        <h2>$${product.price}</h2>
+                    `;
+                });
+        }
+        </script>
+</body>
+</html>
