@@ -42,21 +42,29 @@ function checkOddEven() {
 
 function assignGrade() {
     let percentage = document.getElementById("percentageInput").value;
-    let gradeResult = document.getElementById("gradeResult");
-    let grade;
+    let gradeOutput = document.getElementById("gradeOutput");
+    let grade = "";
+
+    // Use a switch statement to assign grades based on the percentage range
     switch (true) {
-        case (percentage >= 90 && percentage <= 100):
-            grade = "A";
+        case percentage >= 90 && percentage <= 100:
+            grade = "Grade: A";
             break;
-        case (percentage >= 80 && percentage < 90):
-            grade = "B";
+        case percentage >= 80 && percentage < 90:
+            grade = "Grade: B";
             break;
-        case (percentage >= 70 && percentage < 80):
-            grade = "C";
+        case percentage >= 70 && percentage < 80:
+            grade = "Grade: C";
+            break;
+        case percentage >= 0 && percentage < 70:
+            grade = "Grade: F";
             break;
         default:
-            grade = "F";
+            grade = "Enter valid percentage.";
             break;
     }
-    gradeResult.textContent = `Grade: ${grade}`;
+    gradeOutput.innerText = grade;
 }
+
+document.getElementById("percentageInput").addEventListener("input", assignGrade);
+
