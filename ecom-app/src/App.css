@@ -1,0 +1,185 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+nav {
+  background-color: #333;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  color: #f8b400;
+}
+
+.home-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.home-container h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+.home-container p {
+  font-size: 18px;
+  color: #666;
+}
+
+.home-container a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f8b400;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.home-container a:hover {
+  background-color: #e09c00;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 250px;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.product-card p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f8b400;
+}
+
+.product-card button {
+  padding: 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.product-card button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.product-card button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.cart-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.cart-container h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-list li {
+  background-color: white;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-list img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.cart-list span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.popup {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgb(0, 113, 128);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1000;
+}
+.remove-btn {
+  padding: 8px 12px;
+  border: none;
+  background-color: rgb(125, 196, 244);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.remove-btn:hover {
+  background-color: darkred;
+}
